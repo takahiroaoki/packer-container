@@ -29,3 +29,10 @@ Reference to each project's README @projects/${each project}
 
 ## Appendix
 ### Packer
+```
+# Install dependencies
+$ packer init .
+
+# Build images
+$ packer build .
+```
