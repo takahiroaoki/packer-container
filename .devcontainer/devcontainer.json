@@ -1,0 +1,14 @@
+{
+	"name": "packer-container",
+	"dockerComposeFile": "docker-compose.yml",
+  "service": "packer",
+	"workspaceFolder": "/mnt/packer-container",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"yzhang.markdown-all-in-one",
+			]
+		}
+	}
+}
