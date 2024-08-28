@@ -5,6 +5,10 @@ packer {
       source  = "github.com/hashicorp/amazon"
       version = "~> 1"
     }
+    goss = {
+      version = "~> 3.2"
+      source  = "github.com/YaleUniversity/goss"
+    }
   }
 }
 
@@ -55,6 +59,24 @@ build {
     // ]
     scripts = [
       "./scripts/initialize.sh"
+    ]
+  }
+  // server side test
+  provisioner "goss" {
+    pause_before = "30s"
+    skip_install = false
+    tests = [
+      "./goss.yml"
+    ]
+    remote_path = "/tmp/goss"
+    goss_file   = "goss.yml"
+    use_sudo    = true
+  }
+
+  provisioner "shell" {
+    inline = [
+      "rm -rf /tmp/goss",
+      "rm -rf /tmp/goss-*"
     ]
   }
 }

@@ -1,0 +1,28 @@
+file:
+  /usr/share/nginx/html/index.html:
+    title: whether index.html does exist
+    exists: true
+    mode: "0664"
+    owner: ec2-user
+    group: ec2-user
+    filetype: file
+    contents: null
+    sha256: a36c97ad89e5558336582f3d4881238b10fdf29d778b29f2c00ca701ceed5a5e
+package:
+  nginx:
+    title: whether nginx is installed
+    installed: true
+    versions:
+    - 1:1.24.0-1.amzn2023.0.2
+service:
+  nginx:
+    title: whether nginx is enabled and running
+    enabled: true
+    running: true
+http:
+  http://localhost:
+    title: whether http port is listening
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 1000
