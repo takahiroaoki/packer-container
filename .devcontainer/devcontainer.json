@@ -8,6 +8,7 @@
 			"extensions": [
 				"ms-azuretools.vscode-docker",
 				"yzhang.markdown-all-in-one",
+				"4ops.packer"
 			]
 		}
 	}
