@@ -4,5 +4,5 @@ Basic nginx installed EC2 AMI
 
 ```
 $ packer init .
-$ packer build .
+$ packer build -var-file=variables.pkrvars.hcl .
 ```
