@@ -39,6 +39,6 @@ $ packer validate ${file name}
 # Build images
 $ packer build ${file name}
 
-$ Usr packer console
+$ Use packer console
 $ packer console --config-type=hcl2
 ```
