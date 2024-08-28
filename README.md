@@ -40,7 +40,7 @@ $ packer fmt ${file name}
 $ packer validate ${file name}
 
 # Build images
-$ packer build ${file name}
+$ packer build [-debug] [-on-error=ask] [-var ${var name}=${value}] [-var-file=${pkrvars.hcl file name}] ${file name}
 
 $ Use packer console
 $ packer console --config-type=hcl2 [-var-file=${pkrvars.hcl file name}] [${pkr.hcl file name you want to include}]

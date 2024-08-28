@@ -20,12 +20,19 @@ build {
   sources = [
     "source.amazon-ebs.amzn2-nginx"
   ]
+  provisioner "file" {
+    source      = "./resources/index.html"
+    destination = "/home/ec2-user/"
+  }
   provisioner "shell" {
-    inline = [
-      "sudo yum update -y",
-      "sudo yum install -y nginx",
-      "sudo systemctl enable nginx",
-      "sudo systemctl start nginx"
+    // inline = [
+    //   "sudo yum update -y",
+    //   "sudo yum install -y nginx",
+    //   "sudo mv -b /home/ec2-user/index.html /usr/share/nginx/html/",
+    //   "sudo systemctl enable nginx"
+    // ]
+    scripts = [
+      "./scripts/initialize.sh"
     ]
   }
 }
