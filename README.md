@@ -33,6 +33,9 @@ Reference to each project's README @projects/${each project}
 # Install dependencies
 $ packer init ${file name}
 
+# Format
+$ packer fmt ${file name}
+
 # Validation
 $ packer validate ${file name}
 
@@ -40,5 +43,5 @@ $ packer validate ${file name}
 $ packer build ${file name}
 
 $ Use packer console
-$ packer console --config-type=hcl2
+$ packer console --config-type=hcl2 [-var-file=${pkrvars.hcl file name}] [${pkr.hcl file name you want to include}]
 ```
