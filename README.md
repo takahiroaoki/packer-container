@@ -31,8 +31,11 @@ Reference to each project's README @projects/${each project}
 ### Packer
 ```
 # Install dependencies
-$ packer init .
+$ packer init ${file name}
+
+# Validation
+$ packer validate ${file name}
 
 # Build images
-$ packer build .
+$ packer build ${file name}
 ```
