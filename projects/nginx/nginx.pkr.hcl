@@ -8,7 +8,8 @@ packer {
 }
 
 locals {
-  project = "nginx"
+  project   = "nginx"
+  timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
 }
 
 variable "version" {
@@ -29,7 +30,8 @@ source "amazon-ebs" "nginx" {
     volume_size = 8
   }
   tags = {
-    Version       = "${var.version}"
+    Version       = var.version
+    Created       = local.timestamp
     SourceAMIID   = "{{ .SourceAMI }}"
     SourceAMIName = "{{ .SourceAMIName }}"
   }
