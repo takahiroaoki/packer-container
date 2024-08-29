@@ -1,10 +1,16 @@
 #/bin/bash
 
+# Git
+echo "==========="
+echo "Install Git"
+echo "==========="
+sudo dnf update
+sudo dnf install -y git-2.40.1-1.amzn2023.0.3.x86_64
+
 # Docker
 echo "=============="
 echo "Install Docker"
 echo "=============="
-sudo dnf update -y
 sudo dnf install -y docker-25.0.6-1.amzn2023.0.1.x86_64
 sudo systemctl enable docker
 sudo systemctl start docker
