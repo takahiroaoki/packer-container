@@ -1,0 +1,23 @@
+package:
+  git:
+    title: whether git is installed
+    installed: true
+    versions:
+    - 2.40.1-1.amzn2023.0.3
+  docker:
+    title: whether docker is installed
+    installed: true
+    versions:
+    - 25.0.6-1.amzn2023.0.1
+command:
+  minikube version | grep minikube:
+    exit-status: 0
+    stdout:
+        - 'minikube version: v1.33.1'
+    stderr: ""
+    timeout: 1000
+service:
+  docker:
+    title: whether docker is enabled and running
+    enabled: true
+    running: true

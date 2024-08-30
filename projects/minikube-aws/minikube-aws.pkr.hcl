@@ -47,4 +47,21 @@ build {
       "./scripts/setup.sh"
     ]
   }
+  // server side test
+  provisioner "goss" {
+    pause_before = "30s"
+    skip_install = false
+    tests = [
+      "./goss.yml"
+    ]
+    remote_path = "/tmp/goss"
+    goss_file   = "goss.yml"
+    use_sudo    = true
+  }
+  provisioner "shell" {
+    inline = [
+      "rm -rf /tmp/goss",
+      "rm -rf /tmp/goss-*"
+    ]
+  }
 }
