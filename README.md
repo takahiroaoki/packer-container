@@ -3,6 +3,7 @@ Packer execution environment.
 
 ## Requirement
 - DockerDesktop
+- VSCode & Dev Container Extension
 
 We use GitHub Codespaces.
 
