@@ -2,10 +2,10 @@
 Packer execution environment.
 
 ## Requirement
-- DockerDesktop
+- Docker Desktop
 - VSCode & Dev Container Extension
 
-We use GitHub Codespaces.
+※The maintainer uses codespaces.
 
 ## Setup
 We have to create an IAM user "packer" profile with appropriate access.
