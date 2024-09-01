@@ -9,6 +9,10 @@ jobs:
     container:
       image: amazonlinux:2
     steps:
+      - name: Preprocess
+        run: |
+          yum install nodejs
+          node -v
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - uses: aws-actions/configure-aws-credentials@v3
