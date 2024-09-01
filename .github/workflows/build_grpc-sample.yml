@@ -19,6 +19,13 @@ jobs:
     steps:
       - name: Preprocess for checkout
         run: dnf install -y tar gzip
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
       - name: Checkout to artifact-storage
         uses: actions/checkout@v4
         with:
@@ -27,13 +34,6 @@ jobs:
           ref: main
       - name: Move artifact to the expected directory
         run: mv -f artifact-storage/grpc-sample/${{ github.event.inputs.environment }}/grpc-sample projects/grpc-sample/resources
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
       - name: Build
         working-directory: projects/grpc-sample
         run: |
