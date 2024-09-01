@@ -22,5 +22,5 @@ FROM amazonlinux:2023.1.20230809.0
 #    && sudo ./aws/install
 
 # useradd
-RUN useradd "dev-user" && echo "dev-user ALL=NOPASSWD: ALL" >> /etc/sudoers
-USER dev-user
+#RUN useradd "dev-user" && echo "dev-user ALL=NOPASSWD: ALL" >> /etc/sudoers
+#USER dev-user
