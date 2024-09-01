@@ -9,13 +9,8 @@ jobs:
     container:
       image: amazonlinux:2
     steps:
-      - name: Preprocess for checkout
-        run: |
-          curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
-          yum install nodejs
-          node -v
-      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
+      - uses: actions/checkout@v4
       - uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
