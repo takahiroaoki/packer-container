@@ -7,11 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: amazonlinux:2
+      image: amazonlinux:2023.1.20230809.0
     steps:
+      - name: Preprocess for checkout
+        run: dnf install -y tar gzip
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - uses: aws-actions/configure-aws-credential@v4
+      - uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
