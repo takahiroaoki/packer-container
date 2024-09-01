@@ -9,6 +9,8 @@ jobs:
     container:
       image: amazonlinux:2023.1.20230809.0
     steps:
+      - name: Preprocess for checkout
+        run: dnf install -y tar
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - uses: aws-actions/configure-aws-credentials@v3
