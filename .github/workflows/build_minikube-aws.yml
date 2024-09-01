@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Preprocess for checkout
         run: |
-          curl -sL https://rpm.nodesource.com/setup_20.x | bash -
+          curl -sL https://rpm.nodesource.com/setup_18.x | bash -
           yum install -y nodejs
           node -v
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
       - uses: aws-actions/configure-aws-credentials@v3
         with:
