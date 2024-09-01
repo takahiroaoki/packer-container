@@ -28,6 +28,13 @@ $ cat ~/.aws/credentials
 ## How to use
 Reference to each project's README @projects/${each project}
 
+## Build
+Build can be achieved by ./github/workflows/build_XXX.yml via GitHub Actions.
+
+That workflow needs the following info (of profile "packer") to secrets.
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
 ## Appendix
 ### Packer
 ```
