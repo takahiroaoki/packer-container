@@ -1,0 +1,41 @@
+name: Build grpc-sample
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        required: true
+        description: For which environment the build artifact is.
+        options:
+          - "dev"
+          - "prd"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: amazonlinux:2023.1.20230809.0
+    steps:
+      - name: Preprocess for checkout
+        run: dnf install -y tar gzip
+      - name: Checkout to artifact-storage
+        uses: actions/checkout@v4
+        with:
+          repository: takahiroaoki/artifact-storage.git
+          path: artifact-storage
+          ref: main
+      - name: Move artifact to the expected directory
+        run: mv -f artifact-storage/grpc-sample/${{ github.event.inputs.environment }}/grpc-sample projects/grpc-sample/resources
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+      - name: Build
+        working-directory: projects/grpc-sample
+        run: |
+          packer init .
+          packer build -var env=${{ github.event.inputs.environment }} .
