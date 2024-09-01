@@ -19,12 +19,14 @@ variable "version" {
 }
 
 source "amazon-ebs" "minikube-aws" {
-  ami_name      = "${local.project}-ami-${var.version}"
-  profile       = "packer"
-  instance_type = "t2.medium"
-  region        = "ap-northeast-1"
-  source_ami    = "ami-00c79d83cf718a893"
-  ssh_username  = "ec2-user"
+  ami_name              = "${local.project}-ami-${var.version}"
+  profile               = "packer"
+  instance_type         = "t2.medium"
+  region                = "ap-northeast-1"
+  source_ami            = "ami-00c79d83cf718a893"
+  ssh_username          = "ec2-user"
+  force_deregister      = true
+  force_delete_snapshot = true
 
   launch_block_device_mappings {
     device_name = "/dev/xvda"
