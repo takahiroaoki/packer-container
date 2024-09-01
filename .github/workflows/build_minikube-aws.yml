@@ -9,8 +9,9 @@ jobs:
     container:
       image: amazonlinux:2
     steps:
-      - name: Preprocess
+      - name: Preprocess for checkout
         run: |
+          curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
           yum install nodejs
           node -v
       - uses: actions/checkout@v4
