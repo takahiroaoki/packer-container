@@ -9,7 +9,8 @@ runs:
           git \
           unzip \
           sudo \
-          dnf-utils
+          dnf-utils \
+          tar
       shell: sh
     - name: Install Packer
       run: |
