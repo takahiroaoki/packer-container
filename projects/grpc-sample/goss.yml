@@ -1,0 +1,18 @@
+file:
+  /usr/local/bin/grpc-sample:
+    title: whether the binary file does exist
+    exists: true
+    mode: "0111"
+    owner: ec2-user
+    group: ec2-user
+  /etc/systemd/system/grpc-sample.service:
+    title: whether the binary file does exist
+    exists: true
+    mode: "0664"
+    owner: ec2-user
+    group: ec2-user
+service:
+  grpc-sample:
+    title: whether grpc-sample is enabled and running
+    enabled: true
+    #running: true

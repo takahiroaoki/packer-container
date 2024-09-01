@@ -1,0 +1,10 @@
+[Unit]
+Description = grpc-sample daemon
+
+[Service]
+ExecStart = /usr/local/bin/grpc-sample
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
