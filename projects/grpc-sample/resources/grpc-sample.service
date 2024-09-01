@@ -2,7 +2,7 @@
 Description = grpc-sample daemon
 
 [Service]
-ExecStart = /usr/local/bin/grpc-sample
+ExecStart = /usr/local/bin/grpc-sample server -r true
 Restart = always
 Type = simple
 
