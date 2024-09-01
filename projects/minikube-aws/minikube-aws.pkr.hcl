@@ -21,7 +21,7 @@ variable "version" {
 source "amazon-ebs" "minikube-aws" {
   ami_name              = "${local.project}-ami-${var.version}"
   profile               = "packer"
-  instance_type         = "t2.medium"
+  instance_type         = "t2.micro"
   region                = "ap-northeast-1"
   source_ami            = "ami-00c79d83cf718a893"
   ssh_username          = "ec2-user"
