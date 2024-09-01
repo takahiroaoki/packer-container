@@ -5,6 +5,10 @@ packer {
       source  = "github.com/hashicorp/amazon"
       version = "~> 1"
     }
+    goss = {
+      version = "~> 3.2"
+      source  = "github.com/YaleUniversity/goss"
+    }
   }
 }
 
