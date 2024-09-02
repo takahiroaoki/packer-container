@@ -17,13 +17,8 @@ locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
 }
 
-variable "version" {
-  type    = string
-  default = "undefined"
-}
-
 source "amazon-ebs" "minikube-aws" {
-  ami_name              = "${local.project}-ami-${var.version}"
+  ami_name              = "${local.project}-ami"
   profile               = "packer"
   instance_type         = "t2.micro"
   region                = "ap-northeast-1"
