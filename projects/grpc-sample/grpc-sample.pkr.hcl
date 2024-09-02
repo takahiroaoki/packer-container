@@ -56,9 +56,7 @@ build {
     inline = [
       "sudo mv /home/ec2-user/grpc-sample /usr/local/bin",
       "sudo mv /home/ec2-user/grpc-sample.service /etc/systemd/system",
-      "sudo chmod 0111 /usr/local/bin/grpc-sample",
-      "sudo systemctl enable grpc-sample",
-      "sudo systemctl start grpc-sample"
+      "sudo chmod 0111 /usr/local/bin/grpc-sample"
     ]
   }
   // server side test

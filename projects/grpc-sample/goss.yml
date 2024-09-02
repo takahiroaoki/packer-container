@@ -14,5 +14,6 @@ file:
 service:
   grpc-sample:
     title: whether grpc-sample is enabled and running
-    enabled: true
-    #running: true
+    skip: false
+    enabled: false
+    running: false
