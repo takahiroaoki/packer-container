@@ -32,7 +32,6 @@ source "amazon-ebs" "minikube-aws" {
     volume_size = 8
   }
   tags = {
-    Version       = var.version
     Created       = local.timestamp
     SourceAMIID   = "{{ .SourceAMI }}"
     SourceAMIName = "{{ .SourceAMIName }}"
