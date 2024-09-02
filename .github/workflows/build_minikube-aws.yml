@@ -22,4 +22,4 @@ jobs:
         working-directory: projects/minikube-aws
         run: |
           packer init .
-          packer build -var-file=variables.pkrvars.hcl .
+          packer build .
