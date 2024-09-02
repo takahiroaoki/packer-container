@@ -3,13 +3,10 @@ name: Build grpc-sample
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        type: choice
+      build_version:
+        type: string
         required: true
-        description: For which environment the build artifact is.
-        options:
-          - "dev"
-          - "prd"
+        description: grpc-sample-${build_bersion}
 
 jobs:
   build:
@@ -33,9 +30,12 @@ jobs:
           path: artifact-storage
           ref: main
       - name: Move artifact to the expected directory
-        run: mv -f artifact-storage/grpc-sample/${{ github.event.inputs.environment }}/grpc-sample projects/grpc-sample/resources
+        run: |
+          rm projects/grpc-sample/resources/grpc-sample
+          mv -n artifact-storage/grpc-sample/grpc-sample-${{ github.event.inputs.build_version }} projects/grpc-sample/resources
+          mv projects/grpc-sample/resources/grpc-sample-${{ github.event.inputs.build_version }} projects/grpc-sample/resources/grpc-sample
       - name: Build
         working-directory: projects/grpc-sample
         run: |
           packer init .
-          packer build -var env=${{ github.event.inputs.environment }} .
+          packer build -var version=${{ github.event.inputs.build_version }} .
