@@ -14,16 +14,17 @@ packer {
 
 locals {
   project   = "grpc-sample"
+  base_ver  = "0.0.1"
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
 }
 
-variable "version" {
+variable "app_ver" {
   type    = string
   default = "0.0.0"
 }
 
 source "amazon-ebs" "grpc-sample" {
-  ami_name              = "${local.project}-ami-${var.version}"
+  ami_name              = "${local.project}-ami-${local.base_ver}-${var.app_ver}"
   profile               = "packer"
   instance_type         = "t2.micro"
   region                = "ap-northeast-1"
@@ -37,10 +38,11 @@ source "amazon-ebs" "grpc-sample" {
     volume_size = 8
   }
   tags = {
-    Version       = var.version
-    Created       = local.timestamp
     SourceAMIID   = "{{ .SourceAMI }}"
     SourceAMIName = "{{ .SourceAMIName }}"
+    BaseVersion   = local.base_ver
+    AppVersion    = var.app_ver
+    Created       = local.timestamp
   }
 }
 
@@ -49,11 +51,16 @@ build {
     "source.amazon-ebs.grpc-sample"
   ]
   provisioner "file" {
-    source      = "./resources/"
+    source      = "./resources/grpc-sample.service"
+    destination = "/home/ec2-user/"
+  }
+  provisioner "file" {
+    source      = "./resources/grpc-sample-${var.app_ver}"
     destination = "/home/ec2-user/"
   }
   provisioner "shell" {
     inline = [
+      "sudo mv /home/ec2-user/grpc-sample-${var.app_ver} /home/ec2-user/grpc-sample",
       "sudo mv /home/ec2-user/grpc-sample /usr/local/bin",
       "sudo mv /home/ec2-user/grpc-sample.service /etc/systemd/system",
       "sudo chmod 0111 /usr/local/bin/grpc-sample"
