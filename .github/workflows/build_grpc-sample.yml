@@ -3,10 +3,10 @@ name: Build grpc-sample
 on:
   workflow_dispatch:
     inputs:
-      build_version:
+      app_ver:
         type: string
         required: true
-        description: grpc-sample-${build_bersion}
+        description: grpc-sample-${app_ver}
 
 jobs:
   build:
@@ -30,12 +30,9 @@ jobs:
           path: artifact-storage
           ref: main
       - name: Move artifact to the expected directory
-        run: |
-          rm projects/grpc-sample/resources/grpc-sample
-          mv -n artifact-storage/grpc-sample/grpc-sample-${{ github.event.inputs.build_version }} projects/grpc-sample/resources
-          mv projects/grpc-sample/resources/grpc-sample-${{ github.event.inputs.build_version }} projects/grpc-sample/resources/grpc-sample
+        run: mv -n artifact-storage/grpc-sample/grpc-sample-${{ github.event.inputs.app_ver }} projects/grpc-sample/resources
       - name: Build
         working-directory: projects/grpc-sample
         run: |
           packer init .
-          packer build -var version=${{ github.event.inputs.build_version }} .
+          packer build -var app_ver=${{ github.event.inputs.app_ver }} .
