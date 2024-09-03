@@ -38,11 +38,11 @@ source "amazon-ebs" "grpc-sample" {
     volume_size = 8
   }
   tags = {
-    BaseVer       = local.base_ver
-    AppVer        = var.app_ver
-    Created       = local.timestamp
     SourceAMIID   = "{{ .SourceAMI }}"
     SourceAMIName = "{{ .SourceAMIName }}"
+    BaseVersion   = local.base_ver
+    AppVersion    = var.app_ver
+    Created       = local.timestamp
   }
 }
 
