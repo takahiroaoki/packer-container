@@ -1,0 +1,10 @@
+[Unit]
+Description = grpc-sample daemon
+
+[Service]
+ExecStart = /usr/bin/bash -c "source /home/ec2-user/export.sh && /usr/local/bin/grpc-sample server -r true"
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
